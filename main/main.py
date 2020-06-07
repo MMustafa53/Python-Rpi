@@ -82,6 +82,10 @@ def count_down():
         saniye_text.value = int(saniye_text.value) - 1
 
 
+def stop_app():
+    app.destroy()
+
+
 def count_islem():
     if int(islem_text_sure.value) > 0:
         islem_text_sure.value = int(islem_text_sure.value) - 1
@@ -168,6 +172,7 @@ oto_buton = PushButton(app, text="Otomatik Sterizlizasyon", command=manuel_steri
                        enabled=False)
 
 islem_son_window = Window(app, title="Sterilizasyon İşlemi Tamamlandı", visible=False)
+islem_son_window.on_close(stop_app)
 islem_son_text = Text(islem_son_window, text="\n\nSterilizasyon işlemi tamamlandı.\n Havalandırma sistemi durduğunda cihazı kapatabilirsiniz.", visible=False)
 
 islem_window = Window(app, title="Sterilizasyon Yapılıyor", visible=False)
