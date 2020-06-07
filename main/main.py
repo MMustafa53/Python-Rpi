@@ -165,6 +165,8 @@ def close_window_bes():
 
 
 app = App(title="Ana Sayfa", layout="grid")
+app.set_full_screen()
+app.when_closed = stop_app
 
 welcome_message = Text(app, text="Sterilizasyon Şeklini şeçiniz.\n", grid=[0, 0])
 manuel_buton = PushButton(app, text="Manuel Sterilizasyon", command=manuel_sterilizasyon_view, grid=[0, 1])
@@ -172,15 +174,20 @@ oto_buton = PushButton(app, text="Otomatik Sterizlizasyon", command=manuel_steri
                        enabled=False)
 
 islem_son_window = Window(app, title="Sterilizasyon İşlemi Tamamlandı", visible=False)
-islem_son_window.on_close(stop_app)
+islem_son_window.when_closed = stop_app
+islem_son_window.set_full_screen()
 islem_son_text = Text(islem_son_window, text="\n\nSterilizasyon işlemi tamamlandı.\n Havalandırma sistemi durduğunda cihazı kapatabilirsiniz.", visible=False)
 
 islem_window = Window(app, title="Sterilizasyon Yapılıyor", visible=False)
+islem_window.when_closed = stop_app
+islem_window.set_full_screen()
 islem_text = Text(islem_window, text="İşlem Süresi- Saniye")
 islem_text_sure = Text(islem_window, text="", visible=False)
 acil_buton = PushButton(islem_window, text="Acil Durum", command=acil_islem)
 
 ileri_window = Window(app, title="Onaylıyor Musunuz?", visible=False)
+ileri_window.when_closed = stop_app
+ileri_window.set_full_screen()
 ileri_text = Text(ileri_window, text="Seçtiğiniz kriterlere göre sterilizasyon işlemi 1 dakika sürecektir.\nOnaylıyor musunuz?\n")
 onay_buton = PushButton(ileri_window, text="Onayla", command=onay_view)
 iptal_buton = PushButton(ileri_window, text="İptal", command=iptal_view)
@@ -191,7 +198,10 @@ str = '\n\n'
 
 cevap_text = Text(app, text=str, grid=[0, 2], visible=False, align='left')
 ileri_buton = PushButton(app, text="İleri", command=ileri_view, grid=[0, 8], visible=False)
+
 sb1window = Window(app, title="Soru 1", visible=False)
+sb1window.when_closed = stop_app
+sb1window.set_full_screen()
 
 soru_bir = Text(sb1window, text="Sterilizasyon esnasında ortamda insan/hayvan bulunacak mı?\n")
 evet_bir = PushButton(sb1window, text="Evet ", command=close_window_bir_e)
@@ -199,6 +209,8 @@ hayir_bir = PushButton(sb1window, text="Hayır", command=close_window_bir_h)
 geri_bir = PushButton(sb1window, text="Geri Dön", command=geri_bir)
 
 sb2window = Window(app, title="Soru 2", visible=False)
+sb2window.when_closed = stop_app
+sb2window.set_full_screen()
 
 soru_iki = Text(sb2window, text="Sterilizasyon yapılacak yerde ozona/paslanmaya\n dayanıksız malzeme var mı?\n")
 evet_iki = PushButton(sb2window, text="Evet ", command=close_window_iki_e)
@@ -206,19 +218,24 @@ hayir_iki = PushButton(sb2window, text="Hayır", command=close_window_iki_h)
 geri_iki = PushButton(sb2window, text="Geri Dön", command=geri_iki)
 
 sb3window = Window(app, title="Soru 3", visible=False)
-
+sb3window.when_closed = stop_app
+sb3window.set_full_screen()
 soru_uc = Text(sb3window, text="Sterilizasyon yapılacak yerde hava akımı var mı?\n")
 evet_uc = PushButton(sb3window, text="Evet ", command=close_window_uc_e)
 hayir_uc = PushButton(sb3window, text="Hayır", command=close_window_uc_h)
 geri_uc = PushButton(sb3window, text="Geri Dön", command=geri_uc)
 
 sb4window = Window(app, title="Soru 4", visible=False)
+sb4window.when_closed = stop_app
+sb4window.set_full_screen()
 soru_dort = Text(sb4window, text="Sterilizasyon yapılacak yerin alanı - m\u00b2 \n")
 alan = TextBox(sb4window, text="50")
 alan_kaydet = PushButton(sb4window, text="Kaydet", command=close_window_dort)
 geri_dort = PushButton(sb4window, text="Geri Dön", command=geri_dort)
 
 sb5window = Window(app, title="Soru 5", visible=False)
+sb5window.when_closed = stop_app
+sb5window.set_full_screen()
 soru_bes = Text(sb5window, text="Sterilizasyon yapılacak yerin yüksekliği - m\n")
 yukseklik = TextBox(sb5window, text="50")
 yukseklik_kaydet = PushButton(sb5window, text="Kaydet ", command=close_window_bes)
